@@ -70,5 +70,5 @@ while continue_part: # As long as we have to continue the game we ask the user t
             print("You leave the casino with your winnings.")
             continue_part = False
 
-#  We pause the system
+# We pause the system
 os.system("pause")
