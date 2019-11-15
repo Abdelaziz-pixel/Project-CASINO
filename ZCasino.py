@@ -1,78 +1,74 @@
-# Ce fichier abrite le code du ZCasino, un jeu de roulette adapté
-
-import os
+# This file houses the code of ZCasino, a game of adapted roulette
+import os 
 from random import randrange
 from math import ceil
 
-# Déclaration des variables de départ
-argent = 1000 # On a 1000 $ au début du jeu
-continuer_partie = True # Booléen qui est vrai tant qu'on doit
-                        # continuer la partie
+# Declaration of the starting variables
+Cash = 1000 # We have $ 1000 at the beginning of the game
+continue_part = True # Boolean which is true as long as we have to continue the game
 
-print("Vous vous installez à la table de roulette avec", argent, "$.")
+print("You sit at the roulette table with", Cash, "$.")
 
-while continuer_partie: # Tant qu'on doit continuer la partie
-    # on demande à l'utilisateur de saisir le nombre sur
-    # lequel il va miser
-    nombre_mise = -1
-    while nombre_mise < 0 or nombre_mise > 49:
-        nombre_mise = input("Tapez le nombre sur lequel vous voulez miser (entre 0 et 49) : ")
+while continue_part: # As long as we have to continue the game we ask the user to enter the number on which he will bet
+    number_put = -1
+    while number_put < 0 or number_put > 49:
+        number_put = input("Type the number you want to bet on (between 0 and 49) : ")
         # On convertit le nombre misé
         try:
-            nombre_mise = int(nombre_mise)
+            number_put = int(number_put)
         except ValueError:
-            print("Vous n'avez pas saisi de nombre")
-            nombre_mise = -1
+            print("You have not entered a number")
+            number_put = -1
             continue
-        if nombre_mise < 0:
-            print("Ce nombre est négatif")
-        if nombre_mise > 49:
+        if number_put < 0:
+            print("This number is negative")
+        if number_put > 49:
             print("Ce nombre est supérieur à 49")
 
-    # À présent, on sélectionne la somme à miser sur le nombre
-    mise = 0
-    while mise <= 0 or mise > argent:
-        mise = input("Tapez le montant de votre mise : ")
-        # On convertit la mise
+    # Now we select the amount to bet on the number
+    bet = 0
+    while bet <= 0 or bet > Cash:
+        bet = input("Enter the amount of your bet : ")
+        # We convert the bet
         try:
-            mise = int(mise)
+            bet = int(bet)
         except ValueError:
-            print("Vous n'avez pas saisi de nombre")
-            mise = -1
+            print("You did not enter a number")
+            bet = -1
             continue
-        if mise <= 0:
-            print("La mise saisie est négative ou nulle.")
-        if mise > argent:
-            print("Vous ne pouvez miser autant, vous n'avez que", argent, "$")
+        if bet <= 0:
+            print("The entered stake is negative or zero.")
+        if bet > Cash:
+            print("You can only bet so much, you only have", Cash, "$")
 
-    # Le nombre misé et la mise ont été sélectionnés par
-    # l'utilisateur, on fait tourner la roulette
-    numero_gagnant = randrange(50)
-    print("La roulette tourne... ... et s'arrête sur le numéro", numero_gagnant)
+    # The number bet and bet have been selected by
+    # the user, we spin the roulette wheel
+    winning_number = randrange(50)
+    print("The roulette turns ... ... and stops on the number", winning_number)
 
-    # On établit le gain du joueur
-    if numero_gagnant == nombre_mise:
-        print("Félicitations ! Vous obtenez", mise * 3, "$ !")
-        argent += mise * 3
-    elif numero_gagnant % 2 == nombre_mise % 2: # ils sont de la même couleur
-        mise = ceil(mise * 0.5)
-        print("Vous avez misé sur la bonne couleur. Vous obtenez", mise, "$")
-        argent += mise
+    # We establish the player's win
+    if winning_number == number_put:
+        print("Congratulations, you get", bet * 3, "$ !")
+        Cash += bet * 3
+    elif winning_number % 2 == number_put % 2: #  they are the same color
+        bet = ceil(bet * 0.5)
+        print("You bet on the right color, you get", bet, "$")
+        Cash += bet
     else:
-        print("Désolé l'ami, c'est pas pour cette fois. Vous perdez votre mise.")
-        argent -= mise
+        print("Sorry the friend, it's not for this time, you lose your bet.")
+        Cash -= bet
 
-    # On interrompt la partie si le joueur est ruiné
-    if argent <= 0:
-        print("Vous êtes ruiné ! C'est la fin de la partie.")
-        continuer_partie = False
+    # Interrupt the game if the player is ruined
+    if Cash <= 0:
+        print("You're ruined! It's the end of the game.")
+        continue_part = False
     else:
-        # On affiche l'argent du joueur
-        print("Vous avez à présent", argent, "$")
-        quitter = input("Souhaitez-vous quitter le casino (o/n) ? ")
-        if quitter == "o" or quitter == "O":
-            print("Vous quittez le casino avec vos gains.")
-            continuer_partie = False
+        # We display the player's Cash
+        print("You have now", Cash, "$")
+        quitter = input("Do you want to leave the casino (yes / no)? ")
+        if quitter == "yes" or quitter == "YES":
+            print("You leave the casino with your winnings.")
+            continue_part = False
 
-# On met en pause le système (Windows)
+#  We pause the system
 os.system("pause")
