@@ -9,7 +9,7 @@ continue_part = True # Boolean which is true as long as we have to continue the 
 
 print("You sit at the roulette table with", Cash, "$.")
 
-while continue_part: # As long as we have to continue the game we ask the user to enter the number on which he will bet
+while continue_part:  # As long as we have to continue the game we ask the user to enter the number on which he will bet
     number_put = -1
     while number_put < 0 or number_put > 49:
         number_put = input("Type the number you want to bet on (between 0 and 49) : ")
