@@ -13,7 +13,7 @@ while continue_part: # As long as we have to continue the game we ask the user t
     number_put = -1
     while number_put < 0 or number_put > 49:
         number_put = input("Type the number you want to bet on (between 0 and 49) : ")
-        # On convertit le nombre misé
+        # We convert the number wagered
         try:
             number_put = int(number_put)
         except ValueError:
