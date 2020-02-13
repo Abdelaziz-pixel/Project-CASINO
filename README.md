@@ -1,4 +1,5 @@
 # Project-Casino
+![alt tag](https://media.joa.fr/dynmed/620/1.91-1/1920/jeux-casino-joa-st-cyprien-g-perret.jpeg)
 
 Welcome to the new project
 For this project i create casino game with python
